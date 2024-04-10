@@ -1,9 +1,9 @@
 import cx_Oracle
 
 # Informações de conexão
-username = 'BD150224429'
-password = 'Cuehg3'
-host = 'BD-ACD'  # Endereço do servidor
+username = ''
+password = ''
+host = ''  # Endereço do servidor
 port = 1521        # Número da porta padrão do Oracle
 service_name = 'XE'  # Ou substitua por SID, caso esteja usando
 
