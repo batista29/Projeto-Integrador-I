@@ -11,16 +11,14 @@ CREATE TABLE Estoque(
 
 describe Estoque;
 
-select * from Estoque;
+SELECT * FROM Estoque;
 
-INSERT into Estoque values (36,'geladeira','geladeira grande branca',5000,200,10,300,20);
+INSERT into Estoque values (6,'Caderno','Ponte Preta',10,30,20,20,29.99);
 
 UPDATE Estoque SET custo_fixo = 250 WHERE id_prod = 36;
 
-DELETE FROM Estoque WHERE id_prod = 37;
-
-INSERT into Estoque values (36,'geladeira','geladeira grande branca',36,15,12,5,20);
-
-INSERT into Estoque values (37,'geladeira','geladeira pequena',1,1,1,1,0);
+DELETE FROM Estoque WHERE id_prod = 36;
 
 INSERT into Estoque values (3,'lápis','chines',0.21,10,5,18,0);
+
+COMMIT;
