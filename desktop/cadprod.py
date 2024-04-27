@@ -89,7 +89,7 @@ if option == 1:
 elif option == 2:
 
     print("Listagem")
-
+    # --- >INSERIR O CÓDIGO DA SEGUNDA ETAPA AQUI!! < ---
     cursor.close()
     connection.close()
 
