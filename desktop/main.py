@@ -58,19 +58,19 @@ if opcao == 1:
         print("\t"*7 +f"E.Comissão de Vendas"+"\t"*3+f"R$ {valor_comissao:.2f}"+"\t"*3+f"{round(valor_comissao/pv*100):.2f}%")
         print("\t"*7 +f"F.Impostos"+"\t"*4+f"R$ {valor_imposto:.2f}"+"\t"*3+f"{round(valor_imposto/pv*100):.2f}%")
         print("\t"*7 +f"G. Outros Custos (D+E+F)"+"\t"*2+f"R$ {valor_outroCusto:.2f}"+"\t"*3+f"{round(valor_outroCusto/pv*100):.2f}%")
-        print("\t"*7 +f"H. Rentabilidade"+"\t"*3+f"R$ {valor_rentabilidade:.2f}"+"\t"*3+f"{round(valor_rentabilidade/pv*100):.2f}%")
+        print("\t"*7 +f"H. Rentabilidade"+"\t"*3+f"R$ {valor_rentabilidade:.2f}"+"\t"*3+f"{round(valor_rentabilidade/pv*100):.2f}%\n")
         
 
         if rentabilidade > 20:
-            print("Lucro\tLucro alto")
+            print("\t"*7+"Lucro:\tLucro alto")
         elif rentabilidade > 10:
-            print("Lucro\tLucro médio")
+            print("\t"*7+"Lucro:\tLucro médio")
         elif rentabilidade > 0:
-            print("Lucro\tLucro baixo")
+            print("\t"*7+"Lucro:\tLucro baixo")
         elif rentabilidade == 0:
-            print("Lucro\tEquilíbrio")
+            print("\t"*7+"Lucro:\tEquilíbrio")
         else:
-            print("Lucro\tPrejuízo")
+            print("\t"*7+"Lucro:\tPrejuízo")
         print("\n")
 
     cursor.close()
