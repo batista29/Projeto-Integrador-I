@@ -1,14 +1,14 @@
 import oracledb
 
 connection = oracledb.connect(
-    user = "BD150224429", 
-    password = 'Cuehg3', 
+    user = "seu user", 
+    password = 'sua senha', 
     dsn = "172.16.12.14:1521/XE"  
 )
 
 cursor = connection.cursor()
 
-option = 1 # int(input("Digite 1 (Cadastrar produto) ou 2 (Listar produto): "))
+opcao = 1 # int(input("Digite 1 (Cadastrar produto) ou 2 (Listar produto): "))
 
 #FUNÇÃO QUE FAZ OS CALCULOS
 def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
@@ -25,7 +25,7 @@ def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
     porcentRentab = (valor_rentabilidade / pv) * 100
     return pv, receitaBruta, porcentcusto_prod, porcentReceitaBruta, porcentOutroCusto, valor_custoFixo, valor_comissao, valor_imposto, valor_outroCusto, valor_rentabilidade, porcentRentab
 
-if option == 1:
+if opcao == 1:
 
     print("Listagem")
 
