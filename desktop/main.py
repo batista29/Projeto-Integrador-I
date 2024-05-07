@@ -1,14 +1,14 @@
 import oracledb
 
 connection = oracledb.connect(
-    user = "seu user",
-    password = 'sua senha',
+    user = "BD150224410",
+    password = 'Xxiek9',
     dsn = "172.16.12.14/xe"  
 )
 
 cursor = connection.cursor()
 
-opcao = 1 # int(input("Digite 1 (Cadastrar produto) ou 2 (Listar produto): "))
+opcao = 1 #int(input("Digite 1 (Cadastrar produto) ou 2 (Listar produto): "))
 
 #FUNÇÃO QUE FAZ OS CALCULOS
 def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
