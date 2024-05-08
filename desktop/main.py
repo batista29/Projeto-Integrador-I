@@ -1,14 +1,14 @@
 import oracledb
 
 connection = oracledb.connect(
-     user = "BD150224410",
-    password = 'Xxiek9',
-    dsn = "172.16.12.14/xe" 
+    user = "seu user",
+    password = 'sua senha',
+    dsn = "172.16.12.14/xe"
 )
 
 cursor = connection.cursor()
 
-option = int(input("Digite 1 (Cadastrar produto), 2 (Listar produto) ou 4 (Excluir produto): "))
+opcao = int(input("Digite 1 (Cadastrar produto), 2 (Listar produto) ou 4 (Excluir produto): "))
 
 #FUNÇÃO QUE FAZ OS CALCULOS
 def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
@@ -26,7 +26,7 @@ def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
     return pv, receitaBruta, porcentcusto_prod, porcentReceitaBruta, porcentOutroCusto, valor_custoFixo, valor_comissao, valor_imposto, valor_outroCusto, valor_rentabilidade, porcentRentab
 
 
-if option == 1:
+if opcao == 1:
     # Casos: 
     #def case1():
     print("Cadastro")
@@ -85,7 +85,7 @@ if option == 1:
     connection.close()
 
 
-elif option == 2:
+elif opcao == 2:
 
     print("Listagem")
 
@@ -137,7 +137,7 @@ elif option == 2:
     connection.close()
 
 
-elif option == 4:
+elif opcao == 4:
 
     print("Excluir")
     
@@ -173,17 +173,17 @@ elif option == 4:
         print("\t"*7 +f"G. Outros Custos (D+E+F)"+"\t"*2+f"R$ {valor_outroCusto:.2f}"+"\t"*3+f"{round(valor_outroCusto/pv*100):.2f}%")
         print("\t"*7 +f"H. Rentabilidade"+"\t"*3+f"R$ {valor_rentabilidade:.2f}"+"\t"*3+f"{round(valor_rentabilidade/pv*100):.2f}%\n")
 
-        escolha=input("Tem certeza que deseja excluir o id {id}? (S/N)")
-        escolha2=escolha.upper()
+    escolha=input("Tem certeza que deseja excluir o id {id}? (S/N)")
+    escolha=escolha.upper()
         
-        if escolha2=='S':
+    if escolha=='S':
             try:
                 cursor.execute("DELETE FROM Estoque WHERE id_prod= :id", {'id': id})
                 print("Item excluido com sucesso")
                 connection.commit() 
             except oracledb.Error as erro:
                 print(erro)
-        else:
+    else:
             print("Seu item não foi excluido")
 
     connection.commit()
