@@ -1,15 +1,85 @@
 import oracledb
 
 connection = oracledb.connect(
-    user = "seu user",
-    password = 'sua senha',
-    dsn = "172.16.12.14/xe"
+    user = "system",
+    password = 'PorFavorzinho24@',
+    dsn = "localhost/xe"
 )
 
 cursor = connection.cursor()
 
 opcao = int(input("Digite 1 (Cadastrar produto), 2 (Alterar cadastro), 3 (Apagar produto), 4 (Listar produto), 5 (Sair do programa): "))
 #falta 2(Alterar cadastro); 5(sair do programa)
+
+def alterar_produto_descricao():
+    desc_prod=input("Digite uma nova descriçâo: ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+    #cursor.execute("UPDATE Estoque SET desc_prod=", descricao," WHERE id_prod=",id)
+
+    alterar = "UPDATE Estoque SET desc_prod=:desc_prod where id_prod=:id"
+    cursor.execute(alterar, {'desc_prod': desc_prod, 'id': id})
+
+    print("Item alterado com sucesso")
+    connection.commit()
+
+def alterar_produto_valor():
+   custo_prod=input("Digite um novo custo: ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+
+    alterar = "UPDATE Estoque SET custo_prod=:custo_prod where id_prod=:id"
+    cursor.execute(alterar, {'custo_prod':custo_prod, 'id': id})
+
+    print("Item alterado com sucesso")
+    connection.commit()
+   
+def alterar_produto_custo():
+   custo_fixo=input("Digite um novo custo fixo: ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+
+    alterar = "UPDATE Estoque SET custo_fixo=:custo_fixo where id_prod=:id"
+    cursor.execute(alterar, {'custo_fixo':custo_fixo, 'id': id})
+
+    print("Item alterado com sucesso")
+    connection.commit()
+
+def alterar_produto_comissao():
+    comissao=input("Digite um novo valor para a comissâo: ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+
+    alterar = "UPDATE Estoque SET comissao=:comissao where id_prod=:id"
+    cursor.execute(alterar, {'comissao':comissao, 'id': id})
+
+    print("Item alterado com sucesso")
+    connection.commit()
+   
+def alterar_produto_imposto():
+    imposto=input("Digite um novo valor para o imposto: ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+
+    alterar = "UPDATE Estoque SET imposto=:imposto where id_prod=:id"
+    cursor.execute(alterar, {'imposto':imposto, 'id': id})
+
+    print("Item alterado com sucesso")
+    connection.commit()
+
+def alterar_produto_rentabilidade():
+    rentabilidade=input("Digite um novo valor para a rentabilidade ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+
+    alterar = "UPDATE Estoque SET rentabilidade=:rentabilidade where id_prod=:id"
+    cursor.execute(alterar, {'rentabilidade':imposto, 'id': id})
+
+    print("Item alterado com sucesso")
+    connection.commit()
+
+
+
 
 #FUNÇÃO QUE FAZ OS CALCULOS
 def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
@@ -187,16 +257,19 @@ elif opcao == 3:
     else:
             print("Seu item não foi excluido")
 
+
     connection.commit()
     cursor.close()   
     connection.close()
 
-elif opcao ==
+elif (opcao==6):
+    desc_prod=input("Digite uma nova descriçâo: ")
+    id=int(input("Digite o id do produto que deseja alterar: "))
+   
+    #cursor.execute("UPDATE Estoque SET desc_prod=", descricao," WHERE id_prod=",id)
 
+    alterar = "UPDATE Estoque SET desc_prod=:desc_prod where id_prod=:id"
+    cursor.execute(alterar, {'desc_prod': desc_prod, 'id': id})
 
-
-
-
-
-
-
+    print("Item alterado com sucesso")
+    connection.commit()
