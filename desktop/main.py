@@ -8,7 +8,8 @@ connection = oracledb.connect(
 
 cursor = connection.cursor()
 
-opcao = int(input("Digite 1 (Cadastrar produto), 2 (Listar produto) ou 4 (Excluir produto): "))
+opcao = int(input("Digite 1 (Cadastrar produto), 2 (Alterar cadastro), 3 (Apagar produto), 4 (Listar produto), 5 (Sair do programa): "))
+#falta 2(Alterar cadastro); 5(sair do programa)
 
 #FUNÇÃO QUE FAZ OS CALCULOS
 def calcular_valores(custo_prod, custo_fixo, comissao, imposto, rentabilidade):
@@ -85,7 +86,7 @@ if opcao == 1:
     connection.close()
 
 
-elif opcao == 2:
+elif opcao == 4:
 
     print("Listagem")
 
@@ -137,9 +138,9 @@ elif opcao == 2:
     connection.close()
 
 
-elif opcao == 4:
+elif opcao == 3:
 
-    print("Excluir")
+    print("Apagar produto")
     
     id=int(input("Digite o id do produto que deseja excluir: "))
 
@@ -190,6 +191,7 @@ elif opcao == 4:
     cursor.close()   
     connection.close()
 
+elif opcao ==
 
 
 
