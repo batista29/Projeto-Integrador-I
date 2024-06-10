@@ -1,65 +1,66 @@
 import oracledb
 
-connection = oracledb.connect(
-    user="BD15022443",
-    password='Vvvmo1',
-    dsn="172.16.12.14/xe"
+connection = oracledb.connect( #conexão com o banco de dados
+    user="BD15022443", # usuário
+    password='Vvvmo1', #senha
+    dsn="172.16.12.14/xe" #domínio do servidor
 )
 
-cursor = connection.cursor()
-def criptografia(frase):
-    alfabeto = 'ZABCDEFGHIJKLMNOPQRSTUVWXY'
-    frase = frase.replace(" ","")
-    frase = frase.upper()
-    texto_cifrado = '' 
-    vetorFrase = [] 
-    chave = [[4,3],
+cursor = connection.cursor() # variável que controla o banco de dados
+def criptografia(frase): # função para criptografar descrição
+    alfabeto = 'ZABCDEFGHIJKLMNOPQRSTUVWXY' # string para pegar os indices das letras
+    frase = frase.replace(" ","") # remove espaços em branco
+    frase = frase.upper() # transforma a descrição em letras maiúsculas.
+    texto_cifrado = '' # variável para guardar a frase criptografada
+    vetorFrase = [] # vetor que pega os pares da frase
+    chave = [[4,3], # matriz chave da criptografia
             [1,2]] 
 
-    if(len(frase)%2 != 0):
-        frase = frase + frase[len(frase)-1]
+    if(len(frase)%2 != 0): #verifica se a frase é impar
+        frase = frase + frase[len(frase)-1] #duplica a ultima letra
     for i in range(len(frase)):
-        posicoes = alfabeto.find(frase[i])
-        vetorFrase.append(posicoes)
+        posicoes = alfabeto.find(frase[i]) #subistitui as letras pelos seus índices
+        vetorFrase.append(posicoes) # preenche o vetor com os índices
 
     for i in range(0,len(vetorFrase),2):
-        par = vetorFrase[i:i+2]
-        cifrado = [0,0]
+        par = vetorFrase[i:i+2] #pega os pares da frase
+        cifrado = [0,0] # guarda par cifrado
         for x in range(2):
-            cifrado[x] = (chave[x][0]*par[0]+chave[x][1]*par[1])%26 
-            texto_cifrado += alfabeto[cifrado[x]] 
-    return texto_cifrado
+            cifrado[x] = (chave[x][0]*par[0]+chave[x][1]*par[1])%26  #multiplica os pares pela matriz chave
+            texto_cifrado += alfabeto[cifrado[x]] # transforma o resultado em letras novamente
+    return texto_cifrado #Retorna a frase criptografada
 
-def descriptografia(frase):
+def descriptografia(frase): # função para descriptografar
 
-    alfabeto = 'ZABCDEFGHIJKLMNOPQRSTUVWXY'
-    frase = frase.upper()
-    texto_descifrado = '' 
-    vetorNome = [] 
-    chave_inversa = [[2,-3],
+    alfabeto = 'ZABCDEFGHIJKLMNOPQRSTUVWXY' # string para pegar os indices das letras
+    frase = frase.upper() # transforma a descrição em letras maiúsculas.
+    texto_descifrado = '' # variável para guardar a frase descriptografada
+    vetorNome = [] # vetor que pega os pares da frase
+    chave_inversa = [[2,-3], # matriz invertida
                     [-1,4]]
-    determinante = 21
+    determinante = 21 #determinante da matriz chave da criptografia
+    #multiplicação de cada elemento da matriz inversa pelo determinante para obter a chave de criptografia
     chave_inversa[0][0] = (determinante*chave_inversa[0][0])%26
     chave_inversa[0][1] = (determinante*chave_inversa[0][1])%26
     chave_inversa[1][0] = (determinante*chave_inversa[1][0])%26
     chave_inversa[1][1] = (determinante*chave_inversa[1][1])%26
 
-    if(len(frase)%2 != 0):
-     frase = frase + frase[len(frase)-1] 
+    if(len(frase)%2 != 0): #verifica se a frase não é impar
+     frase = frase + frase[len(frase)-1] #duplica a ultima letra da frase
     for i in range(len(frase)):
-        posicoes = alfabeto.find(frase[i])
-        vetorNome.append(posicoes)
+        posicoes = alfabeto.find(frase[i]) # substitui as letras pelos seus indices
+        vetorNome.append(posicoes) # preenche o vetor com os indices 
 
     for i in range(0,len(vetorNome),2): 
-        par = vetorNome[i:i+2]
-        descifrado = [0,0]
+        par = vetorNome[i:i+2] # pega os pares cifrados da frase
+        descifrado = [0,0] # guarda o par descifrado
         for x in range(2):
-            descifrado[x] = (chave_inversa[x][0]*par[0]+ chave_inversa[x][1]*par[1])%26
-            texto_descifrado += alfabeto[descifrado[x]] 
-    texto_descifrado =texto_descifrado.title()
-    return texto_descifrado
+            descifrado[x] = (chave_inversa[x][0]*par[0]+ chave_inversa[x][1]*par[1])%26 #multiplica os pares pela chave de descriptografia
+            texto_descifrado += alfabeto[descifrado[x]] # transforma os resultados em letras
+    texto_descifrado =texto_descifrado.title() # Torna apenas a primeira letra da frase maiúscula
+    return texto_descifrado # retorna o texto descifrado
 def imprimir_tabela(id_prod, nome_prod, desc_prod, pv, custo_prod, porcentcusto_prod, receitaBruta, porcentReceitaBruta, valor_custoFixo, valor_comissao, valor_imposto, valor_outroCusto, valor_rentabilidade):
-    desc_prod = descriptografia(desc_prod)
+    desc_prod = descriptografia(desc_prod) # chama a função de descriptografia
     print("\t"*6 + f"{id_prod}:\t {nome_prod}\t {desc_prod}")
     print("\t"*6 + "Descrição"+"\t"*4+"Valor"+"\t"*3+"%")
     print("\t"*6 + f"A. Preço de venda"+"\t"*3+f"R$ {pv:.2f}"+"\t"*3+"100%")
@@ -80,7 +81,7 @@ def imprimir_tabela(id_prod, nome_prod, desc_prod, pv, custo_prod, porcentcusto_
 def listar_produtos():
     print("\t"*3 + "="*106)
     print("\t"*7+"LISTAGEM")
-    connection.commit()
+    connection.commit() 
     cursor.execute("SELECT * FROM Estoque order by id_prod")
 
     for row in cursor: 
