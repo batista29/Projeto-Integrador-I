@@ -1,9 +1,9 @@
 import oracledb
 
 connection = oracledb.connect( #conexão com o banco de dados
-    user="BD15022443", # usuário
-    password='Vvvmo1', #senha
-    dsn="172.16.12.14/xe" #domínio do servidor
+    user="seu usuario", # usuário
+    password='sua senha', #senha
+    dsn="seu ip/xe" #domínio do servidor
 )
 
 cursor = connection.cursor() # variável que controla o banco de dados
